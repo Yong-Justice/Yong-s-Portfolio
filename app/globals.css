@@ -63,3 +63,10 @@ body{background:var(--cream);color:var(--editorial-ink)}h1,h2,h3,.related a{font
 .editorial-home h2{font-size:clamp(3.6rem,7.6vw,7.2rem);line-height:.86}.hero-statement h1{font-size:clamp(4rem,7.6vw,7.2rem);line-height:.82;max-width:980px}.project-copy h2{font-size:clamp(3.8rem,6.5vw,6.4rem)}.contact-editorial h2{font-size:clamp(3.6rem,7.2vw,6.8rem)}
 @media(max-width:1000px){.hero-statement h1{font-size:7.2vw}}
 @media(max-width:700px){.editorial-home h2{font-size:clamp(3rem,14vw,4.4rem)}.hero-statement h1{font-size:clamp(2.35rem,10.2vw,2.9rem);line-height:.9}.project-copy h2{font-size:clamp(3.1rem,15vw,4.6rem)}.contact-editorial h2{font-size:clamp(3rem,14vw,4.4rem)}}
+
+/* Readable editorial biography block. */
+.about-grid>div:first-child{background:rgba(255,255,255,.72);padding:38px 42px;border-left:6px solid var(--magenta);border-radius:8px 34px 34px 8px;box-shadow:7px 9px 0 rgba(16,33,46,.08)}.about-grid p:not(.about-lead){font-family:var(--font-sans),sans-serif;font-size:clamp(1.02rem,1.25vw,1.16rem);line-height:1.8;letter-spacing:-.012em;max-width:65ch;color:#253b47}.about-grid p:not(.about-lead)+p{margin-top:24px;padding-top:22px;border-top:1px solid rgba(16,33,46,.14);font-weight:650;color:var(--blue)}
+
+/* The supplied German-platform set contains three desktop views and one phone view. */
+.case-screenshots:has(img[src*="german-exam-platform"]){grid-template-columns:1fr}.case-screenshots:has(img[src*="german-exam-platform"]) figure:nth-child(2),.case-screenshots:has(img[src*="german-exam-platform"]) figure:nth-child(3){max-width:none;justify-self:stretch}.case-screenshots:has(img[src*="german-exam-platform"]) figure:last-child{max-width:340px;justify-self:center}
+@media(max-width:700px){.about-grid>div:first-child{padding:26px 22px;border-left-width:4px}.about-grid p:not(.about-lead){font-size:1rem;line-height:1.72}}
