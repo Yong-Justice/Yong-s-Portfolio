@@ -6,6 +6,7 @@ out
 !.env.example
 .vercel
 .qa
+.qa-refactor
 *.log
 *.tsbuildinfo
 .DS_Store
