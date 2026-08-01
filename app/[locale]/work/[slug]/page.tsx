@@ -1,0 +1,27 @@
+import type { Metadata } from "next";
+import { ArrowLeft, ArrowRight, LockKeyhole } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { SignalHeading } from "@/components/ui/signal-heading";
+import { getProject, projects } from "@/src/content/projects";
+import { isLocale } from "@/src/content/site-config";
+
+export function generateStaticParams(){return projects.filter(p=>p.hasCaseStudy).flatMap(p=>["en","fr"].map(locale=>({locale,slug:p.slug})));}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const{slug}=await params;const p=getProject(slug);return p?{title:p.name,description:p.summary.en}:{};}
+export default async function CaseStudy({params}:{params:Promise<{locale:string;slug:string}>}){const{locale:raw,slug}=await params;const locale=isLocale(raw)?raw:"en";const p=getProject(slug);if(!p||!p.hasCaseStudy)notFound();const current=projects.findIndex(x=>x.slug===slug);const related=projects.filter(x=>x.hasCaseStudy)[(current+1)%3];const labels=locale==="en"?{back:"All systems",record:"Project record",context:"Context",problem:"Operational problem",constraints:"Constraints",responsibility:"My responsibility",workflow:"Information architecture / workflow",decisions:"Key product decisions",screens:"Selected screens & interactions",technical:"Technical implementation",outcome:"Outcome",learned:"What I learned",next:"Next improvements",related:"Related system",placeholder:"Visual evidence pending — no unapproved screenshots are displayed."}:{back:"Tous les systèmes",record:"Fiche projet",context:"Contexte",problem:"Problème opérationnel",constraints:"Contraintes",responsibility:"Ma responsabilité",workflow:"Architecture de l’information / workflow",decisions:"Décisions produit",screens:"Écrans & interactions",technical:"Implémentation technique",outcome:"Résultat",learned:"Ce que j’ai appris",next:"Prochaines améliorations",related:"Système associé",placeholder:"Preuves visuelles en attente — aucune capture non approuvée n’est affichée."};
+const sections=[labels.context,labels.problem,labels.constraints,labels.responsibility,labels.workflow,labels.decisions,labels.screens,labels.technical,labels.outcome,labels.learned,labels.next];
+return <main id="main" className="case-shell"><aside className="case-index"><Link href={`/${locale}/work`}><ArrowLeft size={14}/>{labels.back}</Link><ol>{sections.map((s,i)=><li key={s}><a href={`#section-${i+1}`}><span>{String(i+1).padStart(2,"0")}</span>{s}</a></li>)}</ol></aside><article className="case-study"><header className="case-hero"><p className="eyebrow">{p.index} / {p.category[locale]}</p><h1>{p.name}</h1><p>{p.summary[locale]}</p>{p.confidentiality&&<div className="confidential"><LockKeyhole size={15}/>{p.confidentiality[locale]}</div>}<dl className="record-grid"><div><dt>{labels.record}</dt><dd>{p.status.replace("-"," ")}</dd></div><div><dt>Role</dt><dd>{p.role[locale]}</dd></div><div><dt>Year</dt><dd>{p.year}</dd></div><div><dt>Stack</dt><dd>{p.stack.join(" · ")}</dd></div></dl></header>
+<CaseSection id="section-1" index="01" title={labels.context}><p className="large-copy">{p.context[locale]}</p></CaseSection>
+<CaseSection id="section-2" index="02" title={labels.problem}><p className="large-copy">{p.problem[locale]}</p></CaseSection>
+<CaseSection id="section-3" index="03" title={labels.constraints}><BulletList items={p.constraints[locale]}/></CaseSection>
+<CaseSection id="section-4" index="04" title={labels.responsibility}><BulletList items={p.responsibilities[locale]}/></CaseSection>
+<CaseSection id="section-5" index="05" title={labels.workflow}><div className="workflow-diagram">{p.features[locale].map((f,i)=><div key={f}><span>{String(i+1).padStart(2,"0")}</span><strong>{f}</strong>{i<p.features[locale].length-1&&<i/>}</div>)}</div></CaseSection>
+<CaseSection id="section-6" index="06" title={labels.decisions}><div className="decision-grid">{p.decisions[locale].map(d=><article key={d.title}><h3>{d.title}</h3><p>{d.description}</p></article>)}</div></CaseSection>
+<CaseSection id="section-7" index="07" title={labels.screens}><div className="visual-placeholder"><span>VISUAL / TODO</span><p>{labels.placeholder}</p><code>{p.todo}</code></div></CaseSection>
+<CaseSection id="section-8" index="08" title={labels.technical}><div className="stack-list">{p.stack.map(s=><span key={s}>{s}</span>)}</div></CaseSection>
+<CaseSection id="section-9" index="09" title={labels.outcome}><BulletList items={p.outcomes[locale]}/></CaseSection>
+<CaseSection id="section-10" index="10" title={labels.learned}><BulletList items={p.lessons[locale]}/></CaseSection>
+<CaseSection id="section-11" index="11" title={labels.next}><BulletList items={p.next[locale]}/></CaseSection>
+<footer className="related"><span className="index">{labels.related}</span><Link href={`/${locale}/work/${related.slug}`}><span>{related.index}</span>{related.name}<ArrowRight/></Link></footer></article></main>}
+function CaseSection({id,index,title,children}:{id:string;index:string;title:string;children:React.ReactNode}){return <section id={id} className="case-section"><SignalHeading index={index} title={title}/>{children}</section>}
+function BulletList({items}:{items:string[]}){return <ul className="record-list">{items.map((item,i)=><li key={item}><span>{String(i+1).padStart(2,"0")}</span>{item}</li>)}</ul>}
