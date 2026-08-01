@@ -6,7 +6,7 @@ export type Project = {
   year: string; role: LocalText; summary: LocalText; problem: LocalText; context: LocalText; constraints: Record<Locale, string[]>;
   responsibilities: Record<Locale, string[]>; features: Record<Locale, string[]>; stack: string[];
   decisions: Record<Locale, { title: string; description: string }[]>; outcomes: Record<Locale, string[]>; lessons: Record<Locale, string[]>;
-  next: Record<Locale, string[]>; liveUrl?: string; repositoryUrl?: string; repositoryVisibility: "public" | "private" | "not-applicable";
+  next: Record<Locale, string[]>; liveUrl?: string; repositoryUrl?: string; screenshots?: { src: string; alt: LocalText }[]; repositoryVisibility: "public" | "private" | "not-applicable";
   confidentiality?: LocalText; hasCaseStudy: boolean; todo?: string;
 };
 
@@ -25,8 +25,14 @@ export const projects: Project[] = [
     decisions: { en: [{ title: "Case-first navigation", description: "Keep the case as the stable context while people, documents, tasks, and dates change around it." }, { title: "Status before decoration", description: "Use restrained signals for risk, ownership, and deadlines so the interface remains calm under load." }], fr: [{ title: "Navigation centrée dossier", description: "Garder le dossier comme contexte stable autour des personnes, documents, tâches et dates." }, { title: "Le statut avant la décoration", description: "Employer des signaux sobres pour le risque, la responsabilité et les échéances." }] },
     outcomes: { en: ["A coherent portfolio MVP demonstrating the relationship between records, workload, and next actions.", "No performance metrics are claimed until the product is tested with representative users."], fr: ["Un MVP cohérent démontrant les liens entre dossiers, charge et prochaines actions.", "Aucune métrique n’est revendiquée avant des tests représentatifs."] },
     lessons: { en: ["Operational products need progressive disclosure more than visual novelty.", "A status label is only useful when it suggests what happens next."], fr: ["Les produits opérationnels ont davantage besoin de divulgation progressive que de nouveauté visuelle.", "Un statut n’est utile que s’il indique la suite."] },
-    next: { en: ["Validate terminology with professional users", "Add realistic empty, error, and permission states", "Confirm public deployment and repository URLs"], fr: ["Valider la terminologie avec des utilisateurs professionnels", "Ajouter les états vides, erreurs et permissions", "Confirmer les URLs de déploiement et dépôt"] },
-    repositoryVisibility: "public", todo: "TODO_NEXACASE_LIVE_AND_REPOSITORY_URLS",
+    next: { en: ["Validate terminology with professional users", "Add realistic empty, error, and permission states", "Continue testing the public demonstration across devices"], fr: ["Valider la terminologie avec des utilisateurs professionnels", "Ajouter les états vides, erreurs et permissions", "Continuer à tester la démonstration publique sur différents appareils"] },
+    liveUrl: "https://nexa-case.vercel.app",
+    repositoryUrl: "https://github.com/Yong-Justice/NexaCase",
+    screenshots: [
+      { src: "/images/projects/nexacase/nexacase-desktop.png", alt: { en: "NexaCase demonstration sign-in screen on desktop", fr: "Écran de connexion de démonstration NexaCase sur ordinateur" } },
+      { src: "/images/projects/nexacase/nexacase-mobile.png", alt: { en: "NexaCase responsive demonstration sign-in screen on mobile", fr: "Écran de connexion responsive de démonstration NexaCase sur mobile" } },
+    ],
+    repositoryVisibility: "public",
   },
   {
     slug: "arkiva", index: "SYS—02", name: "Arkiva", status: "in-development", year: "2026", hasCaseStudy: true,

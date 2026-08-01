@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, LockKeyhole } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Github, LockKeyhole } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SignalHeading } from "@/components/ui/signal-heading";
@@ -17,7 +18,7 @@ return <main id="main" className="case-shell"><aside className="case-index"><Lin
 <CaseSection id="section-4" index="04" title={labels.responsibility}><BulletList items={p.responsibilities[locale]}/></CaseSection>
 <CaseSection id="section-5" index="05" title={labels.workflow}><div className="workflow-diagram">{p.features[locale].map((f,i)=><div key={f}><span>{String(i+1).padStart(2,"0")}</span><strong>{f}</strong>{i<p.features[locale].length-1&&<i/>}</div>)}</div></CaseSection>
 <CaseSection id="section-6" index="06" title={labels.decisions}><div className="decision-grid">{p.decisions[locale].map(d=><article key={d.title}><h3>{d.title}</h3><p>{d.description}</p></article>)}</div></CaseSection>
-<CaseSection id="section-7" index="07" title={labels.screens}><div className="visual-placeholder"><span>VISUAL / TODO</span><p>{labels.placeholder}</p><code>{p.todo}</code></div></CaseSection>
+<CaseSection id="section-7" index="07" title={labels.screens}>{p.screenshots?.length ? <><div className="project-link-row">{p.liveUrl&&<a className="button primary" href={p.liveUrl} target="_blank" rel="noreferrer">{locale==="fr"?"Voir l’application":"View live application"}<ExternalLink size={16}/></a>}{p.repositoryUrl&&<a className="button secondary" href={p.repositoryUrl} target="_blank" rel="noreferrer"><Github size={16}/>{locale==="fr"?"Voir le dépôt GitHub":"View GitHub repository"}</a>}</div><div className="case-screenshots">{p.screenshots.map((shot,i)=><figure className={i===0?"desktop-capture":"mobile-capture"} key={shot.src}><Image src={shot.src} alt={shot.alt[locale]} width={i===0?1440:390} height={i===0?1000:844} sizes={i===0?"(max-width: 900px) 100vw, 900px":"390px"}/><figcaption>{i===0?(locale==="fr"?"Expérience de démonstration — ordinateur":"Demo experience — desktop"):(locale==="fr"?"Interface responsive — mobile":"Responsive interface — mobile")}</figcaption></figure>)}</div></> : <div className="visual-placeholder"><span>VISUAL / TODO</span><p>{labels.placeholder}</p><code>{p.todo}</code></div>}</CaseSection>
 <CaseSection id="section-8" index="08" title={labels.technical}><div className="stack-list">{p.stack.map(s=><span key={s}>{s}</span>)}</div></CaseSection>
 <CaseSection id="section-9" index="09" title={labels.outcome}><BulletList items={p.outcomes[locale]}/></CaseSection>
 <CaseSection id="section-10" index="10" title={labels.learned}><BulletList items={p.lessons[locale]}/></CaseSection>
