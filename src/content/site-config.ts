@@ -1,7 +1,8 @@
 export const siteConfig = {
   name: "Yong Justice Animbom Numfor",
   professionalName: "Yong Justice Numfor",
-  title: "Frontend Developer & Digital Solutions Builder",
+  title: "IT & Digital Solutions Specialist",
+  expandedTitle: "IT & Digital Solutions Specialist | Web Applications, Technical Support & Customer Operations",
   email: "yongjusticeanimbomnumfor@gmail.com",
   phone: "+237 659 154 737",
   whatsapp: "https://wa.me/237659154737",

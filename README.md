@@ -1,3 +1,3 @@
 # Yong Justice Numfor — Portfolio
 
-A bilingual, data-driven professional portfolio built around the “Signal / System / Record” design concept. It presents frontend development, digital records, operational workflows, data skills, and support experience as one coherent body of work
+A bilingual portfolio for an IT & Digital Solutions Specialist, presenting web application development, technical support, customer service, digitalisation, data, and operational problem-solving as one coherent professional profile.

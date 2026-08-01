@@ -8,8 +8,8 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 const display = Fredoka({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-display", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Yong Justice Numfor — Frontend Developer & Digital Solutions Builder", template: "%s — Yong Justice Numfor" },
-  description: "Bilingual frontend developer and digital solutions builder turning operational problems into clear, useful digital products.",
+  title: { default: "Yong Justice Numfor — IT & Digital Solutions Specialist", template: "%s — Yong Justice Numfor" },
+  description: "IT and Digital Solutions Specialist combining web applications, technical support, customer service, data organisation, digitalisation, and operational experience.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"),
 };
 
