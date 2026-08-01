@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, IBM_Plex_Mono, Fredoka } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})()` }} />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
