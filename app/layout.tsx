@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, IBM_Plex_Mono, Fredoka } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
