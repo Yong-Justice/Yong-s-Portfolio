@@ -28,13 +28,14 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
   const otherLocale = locale === "en" ? "fr" : "en";
   const translatedPath = pathname.replace(/^\/(en|fr)/, `/${otherLocale}`);
+  const pageActive = pathname.includes("/work") ? "work" : pathname.includes("/profile") || pathname.includes("/cv") ? "about" : pathname.includes("/contact") ? "contact" : active;
   const toggleTheme = () => { const next = !dark; setDark(next); document.documentElement.dataset.theme = next ? "dark" : "light"; localStorage.setItem("theme", next ? "dark" : "light"); };
   return (
     <header className="site-header">
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="header-inner">
         <Link className="wordmark editorial-wordmark" href={`/${locale}#home`} aria-label="Yong Justice Numfor home"><span>YJ</span><i />PORTFOLIO</Link>
-        <nav className="desktop-nav editorial-nav" aria-label="Primary navigation">{anchors[locale].map((item) => <Link data-active={active === item.id} key={item.id} href={`/${locale}#${item.id}`}>{item.label}</Link>)}</nav>
+        <nav className="desktop-nav editorial-nav" aria-label="Primary navigation">{anchors[locale].map((item) => <Link data-active={pageActive === item.id} key={item.id} href={`/${locale}#${item.id}`}>{item.label}</Link>)}</nav>
         <div className="header-actions">
           <Link className="locale-link" href={translatedPath} hrefLang={otherLocale}>{otherLocale.toUpperCase()}</Link>
           <button className="icon-button" onClick={toggleTheme} aria-label={dark ? "Use light theme" : "Use dark theme"}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
