@@ -6,7 +6,7 @@ export type Project = {
   year: string; role: LocalText; summary: LocalText; problem: LocalText; context: LocalText; constraints: Record<Locale, string[]>;
   responsibilities: Record<Locale, string[]>; features: Record<Locale, string[]>; stack: string[];
   decisions: Record<Locale, { title: string; description: string }[]>; outcomes: Record<Locale, string[]>; lessons: Record<Locale, string[]>;
-  next: Record<Locale, string[]>; liveUrl?: string; repositoryUrl?: string; screenshots?: { src: string; alt: LocalText; kind?: "desktop" | "mobile" }[]; repositoryVisibility: "public" | "private" | "not-applicable";
+  next: Record<Locale, string[]>; liveUrl?: string; liveLabel?: LocalText; repositoryUrl?: string; screenshots?: { src: string; alt: LocalText; kind?: "desktop" | "mobile" }[]; repositoryVisibility: "public" | "private" | "not-applicable";
   confidentiality?: LocalText; hasCaseStudy: boolean; todo?: string;
 };
 
@@ -78,10 +78,31 @@ export const projects: Project[] = [
       { src: "/images/projects/german-exam-platform/listening-simulation.png", kind: "desktop", alt: { en: "Goethe B2 listening simulation with timer, audio controls, progress, and question navigation", fr: "Simulation d’écoute Goethe B2 avec minuteur, audio, progression et navigation des questions" } },
       { src: "/images/projects/german-exam-platform/listening-mobile.png", kind: "mobile", alt: { en: "Responsive German listening simulation on a mobile device", fr: "Simulation d’écoute allemande responsive sur mobile" } },
     ],
+    liveUrl: "https://xn--n-deutschprfungen-d3b.com/",
+    liveLabel: { en: "Visit platform", fr: "Visiter la plateforme" },
     repositoryVisibility: "private", confidentiality: { en: "Private repository — client confidentiality", fr: "Dépôt privé — confidentialité client" },
   },
   {
-    slug: "formalio", index: "SYS—04", name: "Formalio", status: "concept", year: "TODO", hasCaseStudy: false,
+    slug: "mboafix", index: "SYS—04", name: "MboaFix", status: "in-development", year: "2026", hasCaseStudy: true,
+    category: { en: "Environmental action & community coordination", fr: "Action environnementale & coordination communautaire" },
+    role: { en: "Digital solution design & web application development", fr: "Conception de solution numérique & développement d’application web" },
+    summary: { en: "A community environmental-action platform that turns local reports about waste, blocked drains, and other neighbourhood issues into coordinated missions with before-and-after evidence.", fr: "Une plateforme d’action environnementale qui transforme les signalements locaux — déchets, caniveaux obstrués et autres problèmes de quartier — en missions coordonnées avec des preuves avant/après." },
+    context: { en: "MboaFix presents a digital coordination loop connecting residents who report local issues with community groups and organisations able to act. The live site describes the product as a functional demonstration prototype.", fr: "MboaFix présente une boucle numérique qui relie les habitants signalant des problèmes locaux aux groupes communautaires et organisations capables d’agir. Le site décrit le produit comme un prototype de démonstration fonctionnel." },
+    problem: { en: "Local environmental problems can be widely visible while reports, responsible organisations, interventions, and proof of resolution remain disconnected.", fr: "Les problèmes environnementaux locaux peuvent être visibles de tous alors que signalements, organisations responsables, interventions et preuves de résolution restent dispersés." },
+    constraints: { en: ["Designed for field use and low-connectivity settings", "Protect personal information by design", "Distinguish illustrative map data from real reports"], fr: ["Prévoir un usage sur le terrain et une connectivité limitée", "Protéger les informations personnelles dès la conception", "Distinguer les données cartographiques illustratives des signalements réels"] },
+    responsibilities: { en: ["Structure a report-to-resolution journey", "Connect issue reports, community missions, and verification", "Present map statuses and environmental issue categories", "Make the prototype's illustrative data clear to visitors"], fr: ["Structurer le parcours du signalement à la résolution", "Relier signalements, missions communautaires et vérification", "Présenter les statuts cartographiques et les catégories de problèmes", "Clarifier le caractère illustratif des données du prototype"] },
+    features: { en: ["Report an issue with a photo, category, urgency, and GPS location", "Prioritise and group issues on a shared map", "Coordinate local missions with community actors", "Verify progress using before-and-after evidence", "Track example statuses from reported to resolved"], fr: ["Signaler un problème avec photo, catégorie, urgence et position GPS", "Prioriser et regrouper les problèmes sur une carte partagée", "Coordonner des missions locales avec les acteurs communautaires", "Vérifier l’avancement avec des preuves avant/après", "Suivre des statuts illustratifs du signalement à la résolution"] },
+    stack: ["Web platform", "Geospatial workflows", "Community coordination"],
+    decisions: { en: [{ title: "Close the action loop", description: "Carry each report through prioritisation, assignment, field action, and independent verification." }, { title: "Show evidence of resolution", description: "Use dated, located before-and-after evidence to make progress reviewable." }], fr: [{ title: "Fermer la boucle d’action", description: "Faire avancer chaque signalement à travers la priorisation, l’attribution, l’intervention et la vérification indépendante." }, { title: "Montrer la preuve de résolution", description: "Utiliser des preuves avant/après datées et géolocalisées pour rendre l’avancement vérifiable." }] },
+    outcomes: { en: ["A live functional demonstration of a report-to-mission-to-verification workflow.", "Example map counts and statuses are explicitly illustrative, not real-world impact metrics."], fr: ["Une démonstration fonctionnelle en ligne d’un workflow du signalement à la mission puis à la vérification.", "Les volumes et statuts cartographiques sont explicitement illustratifs et ne représentent pas des résultats réels."] },
+    lessons: { en: ["A report is only useful when people can see who will act and how resolution is confirmed.", "Trust depends on clear evidence and honest labels for illustrative data."], fr: ["Un signalement n’est utile que si chacun peut voir qui va agir et comment la résolution sera confirmée.", "La confiance repose sur des preuves claires et une présentation honnête des données illustratives."] },
+    next: { en: ["Continue the field demonstration with local partners", "Validate reporting and verification workflows with residents and responders", "Replace illustrative map data with approved, real pilot information when available"], fr: ["Poursuivre la démonstration sur le terrain avec des partenaires locaux", "Valider les workflows de signalement et de vérification avec habitants et intervenants", "Remplacer les données cartographiques illustratives par des informations réelles approuvées lorsqu’elles seront disponibles"] },
+    liveUrl: "https://mboa-fix.vercel.app/",
+    liveLabel: { en: "Visit MboaFix", fr: "Visiter MboaFix" },
+    repositoryVisibility: "not-applicable",
+  },
+  {
+    slug: "formalio", index: "SYS—05", name: "Formalio", status: "concept", year: "TODO", hasCaseStudy: false,
     category: { en: "Project record pending verification", fr: "Fiche projet en attente de vérification" },
     role: { en: "TODO — confirm role", fr: "TODO — confirmer le rôle" },
     summary: { en: "This project was named in the original portfolio brief, but no verified description, role, links, or outcomes were supplied. Its record remains intentionally incomplete.", fr: "Ce projet est nommé dans le brief, mais aucune description, rôle, lien ou résultat vérifié n’a été fourni. Sa fiche reste volontairement incomplète." },

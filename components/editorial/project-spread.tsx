@@ -5,7 +5,7 @@ import type { Locale } from "@/src/content/site-config";
 import { InterfaceIllustration } from "./interface-illustration";
 import { CurvedArrow, FolderMark, IrregularStar, Sparkles, Tape } from "./motifs";
 
-const illustration = { nexacase: "case", arkiva: "archive", "german-exam-platform": "exam" } as const;
+const illustration = { nexacase: "case", arkiva: "archive", "german-exam-platform": "exam", mboafix: "map" } as const;
 
 export function ProjectSpread({ project, locale, order }: { project: Project; locale: Locale; order: number }) {
   const fr = locale === "fr";
@@ -22,7 +22,7 @@ export function ProjectSpread({ project, locale, order }: { project: Project; lo
         <dl><div><dt>{labels.problem}</dt><dd>{project.problem[locale]}</dd></div><div><dt>{labels.role}</dt><dd>{project.role[locale]}</dd></div><div><dt>Stack</dt><dd>{project.stack.join(" · ")}</dd></div></dl>
         <div className="project-actions">
           <Link className="editorial-link" href={`/${locale}/work/${project.slug}`}>{labels.study}<ArrowUpRight/></Link>
-          {project.liveUrl && <a className="project-action-pill" href={project.liveUrl} target="_blank" rel="noreferrer">{fr ? "Application" : "Live application"}<ExternalLink/></a>}
+          {project.liveUrl && <a className="project-action-pill" href={project.liveUrl} target="_blank" rel="noreferrer">{project.liveLabel?.[locale] ?? (fr ? "Application" : "Live application")}<ExternalLink/></a>}
           {project.repositoryUrl && <a className="project-action-pill" href={project.repositoryUrl} target="_blank" rel="noreferrer"><Github/>{fr ? "Dépôt GitHub" : "GitHub repository"}</a>}
         </div>
       </div>

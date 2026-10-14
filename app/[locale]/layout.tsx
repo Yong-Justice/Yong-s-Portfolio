@@ -8,7 +8,9 @@ export function generateStaticParams() { return locales.map((locale) => ({ local
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const description = "Web applications, IT support, customer operations, digitalisation, and practical digital solutions.";
+  const description = locale === "fr"
+    ? "Applications web, support informatique, opérations clients, digitalisation, motion design et solutions numériques pratiques."
+    : "Web applications, IT support, customer operations, digitalisation, motion design, and practical digital solutions.";
   return {
     alternates: { canonical: `/${locale}`, languages: { en: "/en", fr: "/fr" } },
     openGraph: { title: `${siteConfig.professionalName} — ${siteConfig.title}`, description, type: "website", locale: locale === "fr" ? "fr_FR" : "en_GB" },

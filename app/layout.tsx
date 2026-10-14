@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${mono.variable} ${display.variable}`}>
         {process.env.NODE_ENV === "development" && <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})()` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var l=location.pathname.split('/')[1];if(l==='en'||l==='fr')document.documentElement.lang=l;try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})()` }} />
         {children}
         <Analytics />
         <SpeedInsights />

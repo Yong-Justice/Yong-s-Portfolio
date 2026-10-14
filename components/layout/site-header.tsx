@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import type { Locale } from "@/src/content/site-config";
 
 const anchors = {
-  en: [{ id: "home", label: "Home" }, { id: "about", label: "About" }, { id: "skills", label: "Skills" }, { id: "experience", label: "Experience" }, { id: "work", label: "Work" }, { id: "contact", label: "Contact" }],
-  fr: [{ id: "home", label: "Accueil" }, { id: "about", label: "Profil" }, { id: "skills", label: "Compétences" }, { id: "experience", label: "Expérience" }, { id: "work", label: "Projets" }, { id: "contact", label: "Contact" }],
+  en: [{ id: "home", label: "Home" }, { id: "about", label: "About" }, { id: "skills", label: "Skills" }, { id: "experience", label: "Experience" }, { id: "work", label: "Work" }, { id: "motion", label: "Motion design" }, { id: "contact", label: "Contact" }],
+  fr: [{ id: "home", label: "Accueil" }, { id: "about", label: "Profil" }, { id: "skills", label: "Compétences" }, { id: "experience", label: "Expérience" }, { id: "work", label: "Projets" }, { id: "motion", label: "Motion design" }, { id: "contact", label: "Contact" }],
 };
 
 export function SiteHeader({ locale }: { locale: Locale }) {
@@ -32,17 +32,17 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const toggleTheme = () => { const next = !dark; setDark(next); document.documentElement.dataset.theme = next ? "dark" : "light"; localStorage.setItem("theme", next ? "dark" : "light"); };
   return (
     <header className="site-header">
-      <a className="skip-link" href="#main">Skip to content</a>
+      <a className="skip-link" href="#main">{locale === "fr" ? "Aller au contenu" : "Skip to content"}</a>
       <div className="header-inner">
         <Link className="wordmark editorial-wordmark" href={`/${locale}#home`} aria-label="Yong Justice Numfor home"><span>YJ</span><i />PORTFOLIO</Link>
-        <nav className="desktop-nav editorial-nav" aria-label="Primary navigation">{anchors[locale].map((item) => <Link data-active={pageActive === item.id} key={item.id} href={`/${locale}#${item.id}`}>{item.label}</Link>)}</nav>
+        <nav className="desktop-nav editorial-nav" aria-label={locale === "fr" ? "Navigation principale" : "Primary navigation"}>{anchors[locale].map((item) => <Link data-active={pageActive === item.id} key={item.id} href={`/${locale}#${item.id}`}>{item.label}</Link>)}</nav>
         <div className="header-actions">
-          <Link className="locale-link" href={translatedPath} hrefLang={otherLocale}>{otherLocale.toUpperCase()}</Link>
-          <button className="icon-button" onClick={toggleTheme} aria-label={dark ? "Use light theme" : "Use dark theme"}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
-          <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"}>{open ? <X /> : <Menu />}</button>
+          <Link className="locale-link" href={translatedPath} hrefLang={otherLocale} aria-label={locale === "fr" ? "Passer en anglais" : "Switch to French"}>{otherLocale.toUpperCase()}</Link>
+          <button className="icon-button" onClick={toggleTheme} aria-label={dark ? (locale === "fr" ? "Utiliser le thème clair" : "Use light theme") : (locale === "fr" ? "Utiliser le thème sombre" : "Use dark theme")}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
+          <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? (locale === "fr" ? "Fermer le menu" : "Close menu") : (locale === "fr" ? "Ouvrir le menu" : "Open menu")}>{open ? <X /> : <Menu />}</button>
         </div>
       </div>
-      {open && <div id="mobile-menu" className="mobile-sheet editorial-menu" role="dialog" aria-modal="true" aria-label="Navigation"><span className="index">NAV / {locale.toUpperCase()}</span><nav>{anchors[locale].map((item, i) => <Link key={item.id} href={`/${locale}#${item.id}`}><span>0{i + 1}</span>{item.label}</Link>)}</nav><p>{locale === "en" ? "Useful systems, clearly explained." : "Des systèmes utiles, clairement expliqués."}</p></div>}
+      {open && <div id="mobile-menu" className="mobile-sheet editorial-menu" role="dialog" aria-modal="true" aria-label={locale === "fr" ? "Navigation principale" : "Primary navigation"}><span className="index">NAV / {locale.toUpperCase()}</span><nav>{anchors[locale].map((item, i) => <Link key={item.id} href={`/${locale}#${item.id}`}><span>0{i + 1}</span>{item.label}</Link>)}</nav><p>{locale === "en" ? "Useful systems, clearly explained." : "Des systèmes utiles, clairement expliqués."}</p></div>}
     </header>
   );
 }
