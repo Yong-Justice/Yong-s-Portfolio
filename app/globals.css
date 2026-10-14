@@ -102,3 +102,27 @@ body{background:var(--cream);color:var(--editorial-ink)}h1,h2,h3,.related a{font
 @media(max-width:1000px){.bag-motion-hub{width:220px}.project-bag>.scribble-label{top:calc(51% - 132px)}}
 @media(max-width:700px){.project-bag{min-height:650px}.bag-motion-hub{width:190px;top:51%}.motion-hub-core{width:74%;gap:7px}.motion-hub-core svg{width:48px;height:48px}.project-bag>.scribble-label{top:calc(51% - 115px);font-size:.54rem}.motion-hub-spark{right:0;top:14%}}
 @media(prefers-reduced-motion:reduce){.bag-motion-hub *{animation:none!important}}
+
+/* Keep the entire capability orbit and every label inside its frame. */
+.project-bag{width:100%;max-width:680px;height:clamp(580px,58vw,680px);min-height:0;aspect-ratio:auto;margin-inline:auto;border-radius:50%;overflow:hidden}
+.project-bag>.bag-object{width:min(112px,22%);max-width:112px;min-height:88px;padding:8px 5px;gap:4px;text-align:center;white-space:normal}
+.project-bag>.bag-object b{font-size:.68rem;line-height:1.2}
+.project-bag>.bag-object svg{width:48px;height:48px;flex:none}
+.tools-object{top:12%;left:50%;transform:translateX(-50%) rotate(-4deg)}
+.browser-object{top:22%;left:22%;transform:rotate(-6deg)}
+.folder-object{top:22%;right:22%;transform:rotate(5deg)}
+.customer-object{top:43%;left:8%;transform:rotate(4deg)}
+.git-object{top:43%;right:8%;transform:rotate(8deg)}
+.support-object{top:68%;bottom:auto;left:17%;transform:rotate(4deg)}
+.data-object{top:68%;bottom:auto;right:17%;transform:rotate(-5deg)}
+.documents-object{top:auto;bottom:9%;left:34%;transform:rotate(-3deg)}
+.process-object{top:auto;bottom:17%;right:24%;transform:rotate(4deg)}
+.project-bag>.scribble-label{top:calc(51% - 150px);max-width:75%;white-space:normal}
+.bag-motion-hub{width:clamp(160px,19vw,220px)}
+.motion-hub-spark{width:18px;height:18px;right:7%;top:11%;background:var(--magenta);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:spark-twinkle 2.6s ease-in-out infinite}
+.locale-link{min-width:112px;min-height:42px;display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 9px;background:var(--cream);border:1.5px solid var(--magenta);color:var(--blue);box-shadow:0 3px 0 rgba(165,64,105,.17);font-size:.7rem;font-weight:700;letter-spacing:.04em;transition:transform .2s,box-shadow .2s,background .2s}
+.locale-link:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(165,64,105,.2);background:var(--pink)}
+.locale-link .is-current{color:var(--magenta)}.locale-divider{opacity:.45}.locale-hint{margin-left:3px;font:700 .48rem var(--font-mono);letter-spacing:.03em}
+@media(max-width:1000px){.project-bag{height:610px}.bag-motion-hub{width:190px}}
+@media(max-width:700px){.project-bag{width:100%;height:620px;min-height:0;max-width:440px;border-radius:50%}.project-bag>.bag-object{width:23%;max-width:94px;min-height:77px;padding:5px 3px;font-size:.58rem}.project-bag>.bag-object b{font-size:.57rem}.project-bag>.bag-object svg{width:39px;height:39px}.tools-object{top:10%;left:50%}.browser-object{top:22%;left:17%}.folder-object{top:22%;right:17%}.customer-object{top:42%;left:5%}.git-object{top:42%;right:5%}.support-object{top:67%;left:13%}.data-object{top:67%;right:13%}.documents-object{bottom:8%;left:29%}.process-object{bottom:15%;right:20%}.bag-motion-hub{width:160px;top:51%}.motion-hub-core{width:72%}.project-bag>.scribble-label{top:calc(51% - 120px);font-size:.52rem}.locale-link{min-width:106px;min-height:42px}.site-header .locale-link{display:flex!important}}
+@media(prefers-reduced-motion:reduce){.locale-link{transition:none}.motion-hub-spark{animation:none!important}}
