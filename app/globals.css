@@ -126,3 +126,25 @@ body{background:var(--cream);color:var(--editorial-ink)}h1,h2,h3,.related a{font
 @media(max-width:1000px){.project-bag{height:610px}.bag-motion-hub{width:190px}}
 @media(max-width:700px){.project-bag{width:100%;height:620px;min-height:0;max-width:440px;border-radius:50%}.project-bag>.bag-object{width:23%;max-width:94px;min-height:77px;padding:5px 3px;font-size:.58rem}.project-bag>.bag-object b{font-size:.57rem}.project-bag>.bag-object svg{width:39px;height:39px}.tools-object{top:10%;left:50%}.browser-object{top:22%;left:17%}.folder-object{top:22%;right:17%}.customer-object{top:42%;left:5%}.git-object{top:42%;right:5%}.support-object{top:67%;left:13%}.data-object{top:67%;right:13%}.documents-object{bottom:8%;left:29%}.process-object{bottom:15%;right:20%}.bag-motion-hub{width:160px;top:51%}.motion-hub-core{width:72%}.project-bag>.scribble-label{top:calc(51% - 120px);font-size:.52rem}.locale-link{min-width:106px;min-height:42px}.site-header .locale-link{display:flex!important}}
 @media(prefers-reduced-motion:reduce){.locale-link{transition:none}.motion-hub-spark{animation:none!important}}
+
+/* Give each capability its own small, intentional motion system. */
+.project-bag>.bag-object{--orbit-speed:8s;--orbit-delay:0s;--orbit-tilt:-18deg;isolation:isolate;animation:none;}
+.project-bag>.bag-object::before,.project-bag>.bag-object::after{content:"";position:absolute;z-index:-1;left:50%;top:29px;pointer-events:none}
+.project-bag>.bag-object::before{width:76px;height:52px;border:1px dashed rgba(23,105,170,.32);border-radius:50%;transform:translate(-50%,-50%) rotate(var(--orbit-tilt));animation:capability-orbit var(--orbit-speed) linear infinite;animation-delay:var(--orbit-delay)}
+.project-bag>.bag-object::after{width:7px;height:7px;top:29px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 3px rgba(247,181,209,.2);animation:capability-satellite var(--orbit-speed) linear infinite;animation-delay:var(--orbit-delay)}
+.project-bag>.bag-object svg{position:relative;z-index:1;animation:none;transform-origin:50% 50%}
+.project-bag>.bag-object b{position:relative;z-index:1}
+.browser-object{--orbit-speed:9s;--orbit-tilt:-28deg}.folder-object{--orbit-speed:7.5s;--orbit-tilt:24deg;--orbit-delay:-2s}.customer-object{--orbit-speed:10s;--orbit-tilt:38deg;--orbit-delay:-5s}.git-object{--orbit-speed:6.8s;--orbit-tilt:-42deg;--orbit-delay:-1s}.support-object{--orbit-speed:8.4s;--orbit-tilt:18deg;--orbit-delay:-3.5s}.data-object{--orbit-speed:7.2s;--orbit-tilt:-22deg;--orbit-delay:-4s}.documents-object{--orbit-speed:9.6s;--orbit-tilt:34deg;--orbit-delay:-6s}.process-object{--orbit-speed:8s;--orbit-tilt:-34deg;--orbit-delay:-2.8s}.tools-object{--orbit-speed:7s;--orbit-tilt:16deg;--orbit-delay:-4.8s}
+.browser-object svg{animation:screen-scan 5s ease-in-out infinite!important}.folder-object svg{animation:folder-unfold 6s ease-in-out infinite!important}.customer-object svg{animation:people-connect 5.4s ease-in-out infinite!important}.git-object svg{animation:delivery-flow 4s ease-in-out infinite!important}.support-object svg{animation:support-pulse 4.8s ease-in-out infinite!important}.data-object svg{animation:data-refresh 6s ease-in-out infinite!important}.documents-object svg{animation:document-stack 5.8s ease-in-out infinite!important}.process-object svg{animation:process-check 5s ease-in-out infinite!important}.tools-object svg{animation:tool-adjust 12s ease-in-out infinite!important}
+@keyframes capability-orbit{to{transform:translate(-50%,-50%) rotate(calc(var(--orbit-tilt) + 360deg))}}
+@keyframes capability-satellite{0%,100%{transform:translate(-50%,-50%) translate(0,-25px)}25%{transform:translate(-50%,-50%) translate(36px,0)}50%{transform:translate(-50%,-50%) translate(0,25px)}75%{transform:translate(-50%,-50%) translate(-36px,0)}}
+@keyframes screen-scan{0%,100%{filter:drop-shadow(0 0 0 rgba(23,105,170,0))}45%{filter:drop-shadow(0 0 8px rgba(23,105,170,.55))}}
+@keyframes folder-unfold{0%,100%{transform:perspective(90px) rotateY(0)}35%,65%{transform:perspective(90px) rotateY(-12deg)}}
+@keyframes people-connect{0%,100%{filter:drop-shadow(0 0 0 rgba(165,64,105,0))}50%{filter:drop-shadow(0 0 7px rgba(165,64,105,.48))}}
+@keyframes delivery-flow{0%,100%{stroke-dasharray:1 0;stroke-dashoffset:0}50%{stroke-dasharray:4 2;stroke-dashoffset:-4}}
+@keyframes support-pulse{0%,100%{transform:scale(1)}40%{transform:scale(1.07)}48%{transform:scale(1)}}
+@keyframes data-refresh{0%,25%,100%{transform:rotate(0)}40%,60%{transform:rotate(7deg)}75%{transform:rotate(-4deg)}}
+@keyframes document-stack{0%,100%{transform:translateY(0)}35%{transform:translateY(-3px)}50%{transform:translateY(0)}65%{transform:translateY(2px)}}
+@keyframes process-check{0%,35%,100%{filter:drop-shadow(0 0 0 rgba(23,105,170,0))}50%,75%{filter:drop-shadow(0 0 6px rgba(23,105,170,.5))}}
+@keyframes tool-adjust{0%,20%,100%{transform:rotate(0)}30%,42%{transform:rotate(14deg)}52%,64%{transform:rotate(-8deg)}76%{transform:rotate(0)}}
+@media(prefers-reduced-motion:reduce){.project-bag>.bag-object,.project-bag>.bag-object::before,.project-bag>.bag-object::after,.project-bag>.bag-object svg{animation:none!important}}
